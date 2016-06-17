@@ -70,5 +70,23 @@
     }
   }
 
+  function is_unique($user) {
+    $array = find_all_users();
+    if(isset($user['id'])) {
+      while ($arr = mysqli_fetch_assoc($array)) {
+        if ($arr['username'] == $user['username'] && $arr['id'] != $user['id']) {
+          return false;
+        }
+      }
+      return true;
+    } else {
+      while ($arr = mysqli_fetch_assoc($array)) {
+        if ($arr['username'] == $user['username']) {
+          return false;
+        }
+      }
+      return true;
+    }
+  }
 
 ?>

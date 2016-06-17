@@ -22,7 +22,6 @@ if(is_post_request()) {
   if(isset($_POST['username'])) { $username = $_POST['username']; $user['username'] = h($username); }
   if(isset($_POST['email'])) { $email = $_POST['email']; $user['email'] = h($email); }
 
-
   $result = update_user($user);
   if($result === true) {
     redirect_to('show.php?id=' . u($user['id']));

@@ -12,6 +12,109 @@
     return $country_result;
   }
 
+  function find_country_by_id($id) {
+    global $db;
+    $sql = "SELECT * FROM countries WHERE id = $id";
+    $country_result = db_query($db, $sql);
+    return $country_result;
+  }
+
+  function find_states_by_country_id($id=0) {
+    global $db;
+    $sql = "SELECT * FROM states WHERE country_id = $id ORDER BY name ASC";
+    $result = mysqli_query($db, $sql);
+    return $result;
+  }
+
+  function find_territories_by_state_id($id=0) {
+    global $db;
+    $sql = "SELECT * FROM territories WHERE state_id = $id ORDER BY position ASC";
+    $result = mysqli_query($db, $sql);
+    return $result;
+  }
+
+  function find_salesterritories_by_terr_id($id=0) {
+    global $db;
+    $sql = "SELECT * FROM salespeople_territories WHERE territory_id = $id";
+    $result = mysqli_query($db, $sql);
+    return $result;
+  }
+
+  function validate_country($country, $errors=array()) {
+    if (is_blank($country['name'])) {
+      $errors[] = "Name cannot be blank.";
+    } elseif (!has_length($country['name'], array('min' => 2, 'max' => 60))) {
+      $errors[] = "Name must be between 2 and 60 characters.";
+    } elseif (!has_valid_name($country['name'])) {
+      $errors[] = "Invalid country name.";
+    }
+
+    if (is_blank($country['code'])) {
+      $errors[] = "Country code cannot be blank.";
+    } elseif (!has_length($country['code'], array('min' => 2, 'max' => 10))) {
+      $errors[] = "Country code must be between 2 and 10 characters.";
+    } elseif (!has_valid_code($country['code'])) {
+      $errors[] = "Country code invalid.";
+    }
+    return $errors;
+  }
+
+  // Add a new country to the table
+  // Either returns true or an array of errors
+  function insert_country($country) {
+    global $db;
+
+    $errors = validate_country($country);
+    if (!empty($errors)) {
+      return $errors;
+    }
+
+    $sql = "INSERT INTO countries ";
+    $sql .= "(name, code) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $country['name'] . "',";
+    $sql .= "'" . $country['code'] . "'";
+    $sql .= ");";
+    // For INSERT statments, $result is just true/false
+    $result = db_query($db, $sql);
+    if($result) {
+      return true;
+    } else {
+      // The SQL INSERT statement failed.
+      // Just show the error, not the form
+      echo db_error($db);
+      db_close($db);
+      exit;
+    }
+  }
+
+  // Edit a country record
+  // Either returns true or an array of errors
+  function update_country($country) {
+    global $db;
+
+    $errors = validate_country($country);
+    if (!empty($errors)) {
+      return $errors;
+    }
+    $sql = "UPDATE countries SET ";
+    $sql .= "name='" . $country['name'] . "', ";
+    $sql .= "code='" . $country['code'] . "' ";
+    $sql .= "WHERE id='" . $country['id'] . "' ";
+    $sql .= "LIMIT 1;";
+    // For update_salesperson statments, $result is just true/false
+    $result = db_query($db, $sql);
+    if($result) {
+      return true;
+    } else {
+      // The SQL UPDATE statement failed.
+      // Just show the error, not the form
+      echo db_error($db);
+      db_close($db);
+      exit;
+    }
+  }
+
   //
   // STATE QUERIES
   //
@@ -110,7 +213,6 @@
     if (!empty($errors)) {
       return $errors;
     }
-    echo "BBBBBBBsdljfdlsjf";
     $sql = "UPDATE states SET ";
     $sql .= "name='" . $state['name'] . "', ";
     $sql .= "code='" . $state['code'] . "', ";
@@ -120,10 +222,8 @@
     // For update_salesperson statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
-      echo "AAAAA";
       return true;
     } else {
-      echo "ZZZZZ";
       // The SQL UPDATE statement failed.
       // Just show the error, not the form
       echo db_error($db);
@@ -433,7 +533,10 @@
       $errors[] = "Username must be between 2 and 255 characters.";
     } elseif (!has_valid_username($user['username'])) {
       $errors[] = "Invalid username.";
+    } elseif (!is_unique($user)) {
+      $errors[] = "Username already taken.";
     }
+
 
     if (is_blank($user['email'])) {
       $errors[] = "Email cannot be blank.";
@@ -484,7 +587,7 @@
     global $db;
 
     $errors = validate_user($user);
-    if (!empty($errors)) {
+  if (!empty($errors)) {
       return $errors;
     }
 
@@ -507,5 +610,25 @@
       exit;
     }
   }
+
+  function delete_user($id) {
+    global $db;
+
+    $sql = "DELETE FROM users ";
+    $sql .= "WHERE id='" . $id . "' ";
+    $sql .= "LIMIT 1;";
+    // For update_user statements, $result is just true/false
+    $result = db_query($db, $sql);
+    if($result) {
+      return true;
+    } else {
+      // The SQL UPDATE statement failed.
+      // Just show the error, not the form
+      echo db_error($db);
+      db_close($db);
+      exit;
+    }
+  }
+
 
 ?>

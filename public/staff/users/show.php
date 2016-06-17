@@ -40,6 +40,7 @@ $user = db_fetch_assoc($users_result);
   ?>
   <br />
   <a href="edit.php?id=<?php echo u($user['id']); ?>">Edit</a><br />
+  <a href="delete.php?id=<?php echo u($user['id']); ?>">Delete</a><br />
 
 </div>
 

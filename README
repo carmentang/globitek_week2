@@ -52,11 +52,12 @@ salesperson and is sorted by last name then first name.
 --> new.php
 - [x] Displays a form for adding a new salesperson.
 - [x] The form includes text inputs for first name, last name, phone, and email address.
-- [ ] Submitting the form will validate the data.
+- [x] Submitting the form will validate the data.
   [x] Validate that no values are left blank.
   [x] Validate that all string values are less than 255 characters long (because that is the maximum size for our SQL columns).
   [x] Validate that phone numbers contain only the whitelisted characters: 0-9, spaces, and ()-.
   [x] Validate that email addresses contain only whitelisted characters: A-Z, a-z, 0-9, and @._-.
+  [x] My Custom Validation: Validate that phone number lengths is between 10 to 14 integers.
   [x] My Custom Validation: Validate that first and last names contain only the whitelisted characters: A-Z, a-z, 0-9, space, and .-
 - [x] If validations fail, the form will display again with current values filled in and errors listed.
 - [x] If validations pass, it will add a salesperson to the table and redirect to the salesperson's information page.
@@ -120,9 +121,9 @@ Staff CMS for Territories:
 - [x] Submitting the form will validate the data.
   [x] Validate that no values are left blank.
   [x] Validate that all string values are less than 255 characters long (because that is the maximum size for our SQL columns).
-  [ ] My Custom Validation: Validate that territory names contains only the whitelisted characters: A-Z, a-z, 0-9, space, and .-
-  [ ] My Custom Validation: Validate that positions are integers.
-  [ ] My Custom Validation: Validate that positions are positive.
+  [x] My Custom Validation: Validate that territory names contains only the whitelisted characters: A-Z, a-z, 0-9, space, and .-
+  [x] My Custom Validation: Validate that positions are integers.
+  [x] My Custom Validation: Validate that positions are positive.
 - [x] If validations fail, it will display the form again with errors listed.
 - [x] If validations pass, it will add a territory to the table and redirect to the territory's information page.
 Important note: it should automatically assign the new territory to the current state.
@@ -138,42 +139,47 @@ Important note: it should automatically assign the new territory to the current 
 - [x] On the page is a link labeled "Cancel" which links to the territory's information page.
 
 Validations:
-- [ ] Validate that no values are left blank.
-- [ ] Validate that all string values are less than 255 characters long (because that is the maximum size for our SQL columns).
-- [ ] Validate that usernames contain only the whitelisted characters: A-Z, a-z, 0-9, and _.
-- [ ] Validate that phone numbers contain only the whitelisted characters: 0-9, spaces, and ()-.
-- [ ] Validate that email addresses contain only whitelisted characters: A-Z, a-z, 0-9, and @._-.
-- [ ] My Custom Validation: Validate that names contain only the whitelisted characters: A-Z, a-z, 0-9, space, and .-
-- [ ] My Custom Validation: Validate that codes contain only the whitelisted characters: A-Z, a-z.
-- [ ] My Custom Validation: Validate that country IDs & positions contain only integers.
-- [ ] My Custom Validation: Validate that country IDs & positions are positive.
+- [x] Validate that no values are left blank.
+- [x] Validate that all string values are less than 255 characters long (because that is the maximum size for our SQL columns).
+- [x] Validate that usernames contain only the whitelisted characters: A-Z, a-z, 0-9, and _.
+- [x] Validate that phone numbers contain only the whitelisted characters: 0-9, spaces, and ()-.
+- [x] Validate that email addresses contain only whitelisted characters: A-Z, a-z, 0-9, and @._-.
+- [x] My Custom Validation: Validate that names contain only the whitelisted characters: A-Z, a-z, 0-9, space, and .-
+- [x] My Custom Validation: Validate that codes contain only the whitelisted characters: A-Z, a-z.
+- [x] My Custom Validation: Validate that country IDs & positions contain only integers.
+- [x] My Custom Validation: Validate that country IDs & positions are positive.
+- [x] My Custom Validation: Validate that phone number lengths is between 10 to 14 integers.
 
 Sanitization:
 - [x] All input and dynamic output should be sanitized. (Tips)
 - [x] Be sure to sanitize dynamic data when used for (URLs, HTML, SQL)
 
 Penetration Testing:
-- [ ] Verify that all form text inputs are not vulnerable to XSS attacks. (Tips)
-- [ ] Verify that all URL query strings are not vulnerable to XSS attacks. (Tips)
-- [ ] Verify that all form text inputs are not vulnerable to SQLI attacks. (Tips)
-- [ ] Verify that all URL query strings are not vulnerable to SQLI attacks. (Tips)
-- [ ] Make a list of any other bugs or security vulnerabilities you are able to trigger by putting well-crafted data into a form value,
+- [x] Verify that all form text inputs are not vulnerable to XSS attacks. (Tips)
+- [x] Verify that all URL query strings are not vulnerable to XSS attacks. (Tips)
+- [x] Verify that all form text inputs are not vulnerable to SQLI attacks. (Tips)
+- [x] Verify that all URL query strings are not vulnerable to SQLI attacks. (Tips)
+- [x] Make a list of any other bugs or security vulnerabilities you are able to trigger by putting well-crafted data into a form value,
 in a query string, or in the database data. You get to choose what avenues to probe. If a page acts in any way that was not intended, list it.
 Then fix the problem if you know how. Include your list of discoveries in the README file that accompanies your assignment submission.
 
-Positions and Country IDs could be negative, which could make a pointer point out of the stack/out of bounds.
-
+- Positions and Country IDs could be negative, which could make a pointer point out of the stack/out of bounds.
+- Phone number too long = overflow
+- Code & State IDs need to be sanitized
+- === vs. == in checking if something is contained in a string and equals "false"
+- Man in the middle attacks
+- Passive & active eavesdroppers
 
 The following advanced user stories are optional:
-- [ ] Bonus: On "public/staff/territories/show.php", instead of displaying an integer value for territories.state_id,
+- [x] Bonus: On "public/staff/territories/show.php", instead of displaying an integer value for territories.state_id,
 display the name of the state.
-- [ ] Bonus: Validate the uniqueness of users.username, both when a user is created and when a user is updated.
-- [ ] Bonus: Add a page for "public/staff/users/delete.php". Add a link to it from the user details page.
+- [x] Bonus: Validate the uniqueness of users.username, both when a user is created and when a user is updated.
+- [x] Bonus: Add a page for "public/staff/users/delete.php". Add a link to it from the user details page.
 The delete page will display the text: "Are you sure you want to permanently delete the user: ". If the user confirms it,
 delete the user record and redirect back to the users list.
-- [ ] Bonus: Add a Staff CMS for countries. (Creating a countries table was a bonus objective in last week's assignment.)
+- [x] Bonus: Add a Staff CMS for countries. (Creating a countries table was a bonus objective in last week's assignment.)
 Add pages for "list", "show", "new", and "edit", similar to the pages in the CMS area for states.
-- [ ] Advanced: Nest the CMS for states inside of the Staff CMS for countries (created in the previous challenge).
+- [x] Advanced: Nest the CMS for states inside of the Staff CMS for countries (created in the previous challenge).
 It should be nested in the same way in which territories are nested inside of states.
 
 
@@ -182,7 +188,7 @@ It should be nested in the same way in which territories are nested inside of st
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://imgur.com/dL3tr6H' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

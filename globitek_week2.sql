@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.12-0ubuntu1)
 # Database: assignment02
-# Generation Time: 2016-06-17 23:45:56 +0000
+# Generation Time: 2016-06-17 23:57:28 +0000
 # ************************************************************
 
 
@@ -39,7 +39,8 @@ INSERT INTO `countries` (`id`, `name`, `code`)
 VALUES
 	(1,'United States','US'),
 	(2,'Canada','CA'),
-	(3,'China','CH');
+	(3,'China','CT'),
+	(4,'Ireland','IR');
 
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -68,7 +69,7 @@ VALUES
 	(2,'Sherry','Trevino','555-435-1036','strevino@salesperson.com'),
 	(3,'Irene','Boling','555-736-2301','iboling@salesperson.com'),
 	(4,'Robert','Hamilton','555-866-6132','rhamilton@salesperson.com'),
-	(5,'Ken','Barker','555-352-9651','kbarker@salesperson.com'),
+	(5,'Ken','Barker','555-352-9652','kbarker@salesperson.com'),
 	(6,'Elizabeth','Olson','555-532-3209','eolson@salesperson.com'),
 	(7,'Samuel','Hunter','555-682-7543','shunter@salesperson.com'),
 	(8,'Kim','Stanley','555-302-7805','kstanley@salesperson.com'),
@@ -77,7 +78,8 @@ VALUES
 	(21,'Connie','Tang','510-207-5160','connietang@fb.com'),
 	(22,'Sandra','Tuya','510-734-2341','sandratuya@fb.com'),
 	(23,'Sarah','Kantona','510-323-1252','sarahkaton@fb.com'),
-	(24,'Cindy','Zhang','510-207-6104','cindy.bijou@yahoo.com');
+	(24,'Cindy','Zhang','510-207-6104','cindy.bijou@yahoo.com'),
+	(25,'Tim','Doolittle','510-230-1230','timdoo@fb.com');
 
 /*!40000 ALTER TABLE `salespeople` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -243,7 +245,8 @@ VALUES
 	(54,'Samantha','SA',1),
 	(55,'Aaronhood','AB',1),
 	(56,'Guangzhou','GZ',3),
-	(58,'Wonderland','WL',2);
+	(58,'Wonderland','WL',2),
+	(59,'Dublin','DU',4);
 
 /*!40000 ALTER TABLE `states` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -337,7 +340,9 @@ VALUES
 	(69,'LolLand',37,1),
 	(70,'Titanic',58,1),
 	(71,'Las Tacos',55,1),
-	(72,'Zhongshan',56,1);
+	(72,'Zhongshan',56,1),
+	(73,'Laughingstock',3,2),
+	(74,'University of Dublin',59,1);
 
 /*!40000 ALTER TABLE `territories` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -367,10 +372,10 @@ VALUES
 	(2,'Carmen','Tang','carmentang@fb.com','carmentang','2016-06-14 14:36:53'),
 	(3,'Stacey','Kang','stacy@fb.com','staceytaylor','2016-06-14 15:14:41'),
 	(4,'Hanna','Banana','hanna@fb.com','hannabanana','2016-06-14 15:59:24'),
-	(5,'Amazon','Aerie','azeri@fb.org','azerier','2016-06-16 16:09:07'),
 	(7,'Connie','Tang','connie@fb.com','connietang','2016-06-16 22:41:09'),
 	(8,'Tiffany','Hoang','teetee@gmail.com','tiffanytee','2016-06-17 00:12:27'),
-	(9,'Katie','Lawrence','katielaw@gmail.com','katielaw','2016-06-17 00:31:03');
+	(9,'Katie','Lawrence','katielaw@gmail.com','katielawrence','2016-06-17 00:31:03'),
+	(11,'John','Zuckerberg','zuckerberg@fb.com','zuckerberg','2016-06-17 16:47:12');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
